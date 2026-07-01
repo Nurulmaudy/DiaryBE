@@ -6,7 +6,6 @@ export default defineConfig({
   dialect: 'mysql',
   dbCredentials: {
     host: 'localhost',
-    user: 'root',
     password: 'password',
     database: 'modul_web'
   }

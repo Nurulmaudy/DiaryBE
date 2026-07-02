@@ -42,13 +42,13 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { nim, nama, jurusan, semester, pinHash } = req.body;
 
-    const result = await db
+    const hasil = await db
       .select()
       .from(mahasiswa)
       .where(eq(mahasiswa.nim, nim))
       .limit(1);
 
-    const user = result[0];
+    const user = hasil[0];
 
     if (!user) {
       return res.status(401).json({

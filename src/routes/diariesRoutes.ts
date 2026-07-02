@@ -1,19 +1,12 @@
 import { Router } from 'express';
 
 import multer from 'multer';
-
-import * as diariesController
-from '../controllers/diariesController.js';
-
+import * as diariesController from '../controllers/diariesController.js';
+import { authenticateToken } from '../middlewares/auth.js';
 
 
-const router: Router =
-  Router();
-
-
+const router: Router = Router();
 const upload = multer();
-
-
 
 router.get(
   '/',
@@ -29,6 +22,7 @@ router.get(
 
 router.post(
   '/',
+  authenticateToken,
   upload.none(),
   diariesController.create
 );
@@ -36,6 +30,7 @@ router.post(
 
 router.put(
   '/:id',
+  authenticateToken,
   upload.none(),
   diariesController.update
 );
@@ -43,6 +38,8 @@ router.put(
 
 router.delete(
   '/:id',
+  authenticateToken,
+  upload.none(),
   diariesController.remove
 );
 

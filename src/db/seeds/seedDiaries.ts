@@ -1,11 +1,7 @@
 import { db } from '../index.js';
-
-import { diaries } from '../schema.js';
-
-
+import { diaries } from '../diaries.js';
 
 async function seedDiaries() {
-
   await db.insert(
     diaries as any
   ).values([
@@ -21,34 +17,7 @@ async function seedDiaries() {
       moodId: 2,
 
       isPrivate: true
-    },
-
-    {
-      mahasiswaId: 2,
-
-      title: 'Senang Dapat Nilai Bagus',
-
-      content:
-        'Akhirnya presentasi berjalan lancar dan nilainya memuaskan.',
-
-      moodId: 1,
-
-      isPrivate: false
-    },
-
-    {
-      mahasiswaId: 3,
-
-      title: 'Bingung Masa Depan',
-
-      content:
-        'Masih belum yakin setelah lulus ingin kerja atau lanjut kuliah.',
-
-      moodId: 3,
-
-      isPrivate: true
     }
-
   ]);
 
 

@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
-import { eq } from 'drizzle-orm';
+import { eq, or } from 'drizzle-orm';
 import { db } from '../db/index.js';
-import { moods } from '../db/schema.js'; // Pastikan nama table di schema sesuai
+import { moods } from '../db/moods.js'; 
 
 export async function getAll(_req: Request, res: Response, next: NextFunction) {
   try {
@@ -23,7 +23,7 @@ export async function getById(req: Request, res: Response, next: NextFunction) {
     if (!data[0]) {
       return res.status(404).json({ message: 'Mood tidak ditemukan' });
     }
-
+    
     return res.json(data[0]);
   } catch (error) {
     return next(error);
@@ -38,12 +38,12 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     if (!name || !emoji) {
       return res.status(400).json({ message: 'name dan emoji wajib diisi' });
     }
-
+    
     // Insert data mood baru
     const result = await db.insert(moods).values({ name, emoji }).$returningId();
     
     // Ambil data mood yang baru dibuat berdasarkan ID yang di-return
-    const createdId = result[0]?.id;
+    const createdId = req.body.id;
     const created = await db.select().from(moods).where(eq(moods.id, createdId)).limit(1);
 
     return res.status(201).json(created[0]);

@@ -1,12 +1,15 @@
-import { defineConfig } from 'drizzle-kit';
+import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
-  schema: './src/db/schema.ts',
-  out: './drizzle',
-  dialect: 'mysql',
+  schema: "./src/db/schema.ts",
+
+  out: "./drizzle",
+
+  dialect: "mysql",
+
   dbCredentials: {
-    host: 'localhost',
-    password: 'password',
-    database: 'modul_web'
+    host: "localhost",
+    user: "root",
+    database: "diary_mahasiswa"
   }
 });

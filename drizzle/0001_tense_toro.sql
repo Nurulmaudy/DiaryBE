@@ -1,0 +1,1 @@
+ALTER TABLE `mahasiswa` MODIFY COLUMN `created_at` timestamp DEFAULT (now());

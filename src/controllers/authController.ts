@@ -40,12 +40,12 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { nim, nama, jurusan, semester, pinHash } = req.body;
+    const { nama, pinHash } = req.body;
 
     const hasil = await db
       .select()
       .from(mahasiswa)
-      .where(eq(mahasiswa.nim, nim))
+      .where(eq(mahasiswa.nama, nama))
       .limit(1);
 
     const user = hasil[0];

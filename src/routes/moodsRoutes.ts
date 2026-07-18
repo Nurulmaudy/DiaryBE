@@ -10,16 +10,12 @@ const upload = multer();
 
 router.get(
   '/',
-  authenticateToken,
-  upload.none(),
   moodsController.getAll
 );
 
 
 router.get(
   '/:id',
-  authenticateToken,
-  upload.none(),
   moodsController.getById
 );
 

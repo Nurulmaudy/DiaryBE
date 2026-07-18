@@ -9,10 +9,10 @@ async function seedDiaries() {
     {
       mahasiswaId: 1,
 
-      title: 'Capek Kuliah',
+      title: 'Kangen Masa Lalu',
 
       content:
-        'Hari ini tugas banyak sekali dan deadline bertabrakan.',
+        'kalo lagi banyak deadline gini, pengennya cuma balik ke orang yang selalu ngerti tanpa kita minta untuk dingertiin.',
 
       moodId: 2,
 

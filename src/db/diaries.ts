@@ -1,7 +1,7 @@
 import {
   int,
   mysqlTable,
-  varchar,
+  varchar, timestamp,
   text
 } from 'drizzle-orm/mysql-core';
 
@@ -12,39 +12,34 @@ import { mahasiswa } from './mahasiswa.js';
 import { moods } from './moods.js';
 
 
+export const diaries = mysqlTable("diaries", {
+  id: int("id")
+    .autoincrement()
+    .primaryKey(),
 
-export const diaries =
-  mysqlTable(
-    'diaries',
-    {
-      id: int('id')
-        .autoincrement()
-        .primaryKey(),
+  title: varchar("title", {
+    length: 150,
+  }).notNull(),
 
-      title: varchar('title', {
-        length: 150
-      }).notNull(),
+  content: text("content").notNull(),
 
-      content: text('content')
-        .notNull(),
+  mahasiswaId: int("mahasiswa_id")
+    .notNull()
+    .references(() => mahasiswa.id),
 
-      mahasiswaId: int(
-        'mahasiswa_id'
-      )
-        .notNull()
-        .references(
-          () => mahasiswa.id
-        ),
+  moodId: int("mood_id")
+    .notNull()
+    .references(() => moods.id),
 
-      moodId: int(
-        'mood_id'
-      )
-        .notNull()
-        .references(
-          () => moods.id
-        )
-    }
-  );
+  createdAt: timestamp("created_at")
+    .defaultNow()
+    .notNull(),
+
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .onUpdateNow()
+    .notNull(),
+});
 
 
 
